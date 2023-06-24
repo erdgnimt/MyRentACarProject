@@ -10,12 +10,12 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            //CarManager carManager = new CarManager(new EfCarDal());
+           // CarManager carManager = new CarManager(new EfCarDal());
             //ColorManager colorManager = new ColorManager(new EfColorDal());
             BrandManager brandManager = new BrandManager(new EfBrandDal());
             //DeleteBrand(brandManager);
             //UpdateBrand(brandManager);
-            //AddBrand(brandManager);
+            AddBrand(brandManager);
             //GetAllBrand(brandManager);
             //DeleteColor(colorManager);
             //UpdateColor(colorManager);
@@ -61,16 +61,25 @@ namespace ConsoleUI
             {
                 BrandName = "Mercedes"
             };
-            brandManager.Add(brand);
+            brandManager.Add(brand);            
             GetAllBrand(brandManager);
         }
 
         private static void GetAllBrand(BrandManager brandManager)
         {
-            foreach (var item in brandManager.GetAll())
+            var resultGetAllBrand = brandManager.GetAll();
+            if (resultGetAllBrand.Success)
             {
-                Console.WriteLine($"{item.BrandId}--{item.BrandName}");
+                foreach (var item in resultGetAllBrand.Data)
+                {
+                    Console.WriteLine($"{item.BrandId}--{item.BrandName}");
+                }
             }
+            else
+            {
+                Console.WriteLine(resultGetAllBrand.Message);
+            }
+           
         }
 
         private static void DeleteColor(ColorManager colorManager)
@@ -109,10 +118,19 @@ namespace ConsoleUI
 
         private static void GetAllColor(ColorManager colorManager)
         {
-            foreach (var item in colorManager.GetAll())
+            var resultColorGetAll = colorManager.GetAll();
+            if (resultColorGetAll.Success)
             {
-                Console.WriteLine($"{item.ColorId}--{item.ColorName}");
+                foreach (var item in resultColorGetAll.Data)
+                {
+                    Console.WriteLine($"{item.ColorId}--{item.ColorName}");
+                }
             }
+            else
+            {
+                Console.WriteLine(resultColorGetAll.Message); 
+            }
+            
         }
 
         private static void DeleteCar(CarManager carManager)
@@ -167,26 +185,53 @@ namespace ConsoleUI
 
         private static void GetCarsByBrandId(CarManager carManager)
         {
-            foreach (var item in carManager.GetCarsByBrandId(2))
+            var resultGetCarBrandId = carManager.GetCarsByBrandId(2);
+            if (resultGetCarBrandId.Success)
             {
-                Console.WriteLine($"{item.CarName}--{item.DailyPrice}");
+                foreach (var item in resultGetCarBrandId.Data)
+                {
+                    Console.WriteLine($"{item.CarName}--{item.DailyPrice}");
+                }
             }
+            else
+            {
+                Console.WriteLine(resultGetCarBrandId.Message);
+            }
+
         }
 
         private static void GetAll(CarManager carManager)
         {
-            foreach (var item in carManager.GetAll())
+            var resultCarGetAll = carManager.GetAll();
+            if (resultCarGetAll.Success)
             {
-                Console.WriteLine($"{item.CarId}--{item.CarName}");
+                foreach (var item in resultCarGetAll.Data)
+                {
+                    Console.WriteLine($"{item.CarId}--{item.CarName}");
+                }
             }
+            else
+            {
+                Console.WriteLine(resultCarGetAll.Message);
+            }
+
         }
 
         private static void GetCarDetails(CarManager carManager)
         {
-            foreach (var item in carManager.GetCarDetails())
+            var resultCarDetails = carManager.GetCarDetails();
+            if (resultCarDetails.Success)
             {
-                Console.WriteLine($"{item.CarName}--{item.BrandName}--{item.ColorName}--{item.DailyPrice}");
+                foreach (var item in resultCarDetails.Data)
+                {
+                    Console.WriteLine($"{item.CarName}--{item.BrandName}--{item.ColorName}--{item.DailyPrice}");
+                }
             }
+            else
+            {
+                Console.WriteLine(resultCarDetails.Message);
+            }
+
         }
     }
 }
