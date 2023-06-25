@@ -1,4 +1,5 @@
 ﻿using Business.Concrete;
+using Business.Constants;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using Entites.Concrete;
@@ -10,12 +11,29 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-           // CarManager carManager = new CarManager(new EfCarDal());
+            //CarManager carManager = new CarManager(new EfCarDal());
             //ColorManager colorManager = new ColorManager(new EfColorDal());
-            BrandManager brandManager = new BrandManager(new EfBrandDal());
+            //BrandManager brandManager = new BrandManager(new EfBrandDal());
+            //RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            //Rental rental = new Rental
+            //{                
+            //    CarId = 3,
+            //    CustomerId = 5,
+            //    RentDate = DateTime.Now,
+            //};
+            //var result = rentalManager.Add(rental);
+            //if (result.Success)
+            //{
+            //    Console.WriteLine(Messages.RentalAdded);
+            //}
+            //else
+            //{
+            //    Console.WriteLine(result.Message);
+            //}
+            
             //DeleteBrand(brandManager);
             //UpdateBrand(brandManager);
-            AddBrand(brandManager);
+            //AddBrand(brandManager);
             //GetAllBrand(brandManager);
             //DeleteColor(colorManager);
             //UpdateColor(colorManager);

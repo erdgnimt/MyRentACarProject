@@ -19,6 +19,17 @@ namespace Business.Constants
         public static string BrandDeleted = "Brand Deleted!";
         public static string BrandUpdated="Brand Updated!";
         public static string BrandListed="Brand Listed!";
-
+        public static string CustomerAdded="Customer Added!";
+        public static string CustomerDeleted="Customer Deleted!";
+        public static string CustomerUpdated = "Customer Updated!";
+        public static string CustomerListed="Customer Listed!";
+        public static string RentalAdded="Rental Added!";
+        public static string RentalDeleted="Rental Deleted!";
+        public static string RentalUpdated="Rental Updated!";
+        public static string RentalListed="Rental Listed!";
+        public static string UserAdded="User Added!";
+        public static string UserDeleted="User Deleted!";
+        public static string UserUpdated="User Updated!";
+        internal static string RentalError="Cannot be rented!";
     }
 }
