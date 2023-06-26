@@ -20,7 +20,7 @@ namespace Business.Concrete
 
         public IResult Add(Brand brand)
         {
-            if (DateTime.Now.Hour == 22)
+            if (DateTime.Now.Hour == 11)
             {
                 _brandDal.Add(brand);
                 return new SuccessResult(Messages.BrandAdded);
@@ -34,7 +34,7 @@ namespace Business.Concrete
 
         public IResult Delete(Brand brand)
         {
-            if (DateTime.Now.Hour == 22)
+            if (DateTime.Now.Hour == 11)
             {
                 _brandDal.Delete(brand);
                 return new SuccessResult(Messages.BrandDeleted);
@@ -47,7 +47,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Brand>> GetAll()
         {
-            if (DateTime.Now.Hour == 22)
+            if (DateTime.Now.Hour == 11)
             {
                 return new SuccessDataResult<List<Brand>>(_brandDal.GetAll(),Messages.BrandListed);
             }
@@ -60,7 +60,7 @@ namespace Business.Concrete
 
         public IDataResult<Brand> GetById(int id)
         {
-            if (DateTime.Now.Hour == 22)
+            if (DateTime.Now.Hour == 11)
             {
                 return new SuccessDataResult<Brand>(_brandDal.Get(b => b.BrandId == id), Messages.BrandListed);
             }
@@ -72,7 +72,7 @@ namespace Business.Concrete
 
         public IResult Update(Brand brand)
         {
-            if (DateTime.Now.Hour == 22)
+            if (DateTime.Now.Hour == 11)
             {
                 _brandDal.Update(brand);
                 return new SuccessResult(Messages.BrandUpdated);

@@ -20,7 +20,7 @@ namespace Business.Concrete
        
         public IResult Add(Customer customer)
         {
-            if (DateTime.Now.Hour == 22)
+            if (DateTime.Now.Hour == 11)
             {
                 _customerDal.Add(customer);
                 return new SuccessResult(Messages.CustomerAdded);
@@ -33,7 +33,7 @@ namespace Business.Concrete
 
         public IResult Delete(Customer customer)
         {
-            if (DateTime.Now.Hour == 22)
+            if (DateTime.Now.Hour == 11)
             {
                 _customerDal.Delete(customer);
                 return new SuccessResult(Messages.CustomerDeleted);
@@ -46,7 +46,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Customer>> GetAll()
         {
-            if (DateTime.Now.Hour == 22)
+            if (DateTime.Now.Hour == 11)
             {
                 return new SuccessDataResult<List<Customer>>(_customerDal.GetAll(), Messages.CustomerListed);
             }
@@ -59,7 +59,7 @@ namespace Business.Concrete
 
         public IDataResult<Customer> GetById(int id)
         {
-            if (DateTime.Now.Hour == 22)
+            if (DateTime.Now.Hour == 11)
             {
                 return new SuccessDataResult<Customer>(_customerDal.Get(c => c.CustomerId == id), Messages.ColorListed);
             }
@@ -71,7 +71,7 @@ namespace Business.Concrete
 
         public IResult Update(Customer customer)
         {
-            if (DateTime.Now.Hour == 22)
+            if (DateTime.Now.Hour == 11)
             {
                 _customerDal.Update(customer);
                 return new SuccessResult(Messages.CustomerUpdated);

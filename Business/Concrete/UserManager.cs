@@ -19,7 +19,7 @@ namespace Business.Concrete
         }
         public IResult Add(User user)
         {
-            if (DateTime.Now.Hour == 22)
+            if (DateTime.Now.Hour == 11)
             {
                 _userDal.Add(user);
                 return new SuccessResult(Messages.UserAdded);
@@ -32,7 +32,7 @@ namespace Business.Concrete
 
         public IResult Delete(User user)
         {
-            if (DateTime.Now.Hour == 22)
+            if (DateTime.Now.Hour == 11)
             {
                 _userDal.Delete(user);
                 return new SuccessResult(Messages.UserDeleted);
@@ -45,7 +45,7 @@ namespace Business.Concrete
 
         public IDataResult<List<User>> GetAll()
         {
-            if (DateTime.Now.Hour == 22)
+            if (DateTime.Now.Hour == 11)
             {
                 return new SuccessDataResult<List<User>>(_userDal.GetAll(), Messages.RentalListed);
             }
@@ -57,7 +57,7 @@ namespace Business.Concrete
 
         public IResult Update(User user)
         {
-            if (DateTime.Now.Hour == 22)
+            if (DateTime.Now.Hour == 11)
             {
                 _userDal.Update(user);
                 return new SuccessResult(Messages.UserUpdated);

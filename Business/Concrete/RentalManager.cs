@@ -37,7 +37,7 @@ namespace Business.Concrete
 
         public IResult Delete(Rental rental)
         {
-            if (DateTime.Now.Hour == 22)
+            if (DateTime.Now.Hour == 11)
             {
                 _rentalDal.Delete(rental);
                 return new SuccessResult(Messages.RentalDeleted);
@@ -50,7 +50,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Rental>> GetAll()
         {
-            if (DateTime.Now.Hour == 22)
+            if (DateTime.Now.Hour == 11)
             {
                 return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(), Messages.RentalListed);
             }
@@ -62,7 +62,7 @@ namespace Business.Concrete
 
         public IDataResult<List<RentalDetailDto>> GetRentalDetails()
         {
-            if (DateTime.Now.Hour == 22)
+            if (DateTime.Now.Hour == 11)
             {
                 return new SuccessDataResult<List<RentalDetailDto>>(Messages.RentalListed);
             }
@@ -75,7 +75,7 @@ namespace Business.Concrete
 
         public IResult Update(Rental rental)
         {
-            if (DateTime.Now.Hour == 22)
+            if (DateTime.Now.Hour == 11)
             {
                 _rentalDal.Update(rental);
                 return new SuccessResult(Messages.RentalUpdated);

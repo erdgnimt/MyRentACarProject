@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
@@ -18,24 +20,24 @@ namespace Business.Concrete
         {
             _carDal = carDal;
         }
-
+        [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
 
-            if (DateTime.Now.Hour == 22)
-            {
+           // if (DateTime.Now.Hour == 11)
+           // {
                 _carDal.Add(car);
                 return new SuccessResult(Messages.CarAdded);
-            }
-            else
-            {
-                return new ErrorResult(Messages.MaintenanceTime);
-            }
+          //  }
+          //  else
+          //  {
+           //     return new ErrorResult(Messages.MaintenanceTime);
+           // }
 
         }
         public IResult Delete(Car car)
         {
-            if (DateTime.Now.Hour == 22)
+            if (DateTime.Now.Hour == 11)
             {
                 _carDal.Delete(car);
                 return new SuccessResult(Messages.CarDeleted);
@@ -49,20 +51,20 @@ namespace Business.Concrete
 
         public IDataResult<List<Car>> GetAll()
         {
-            if (DateTime.Now.Hour == 01)
-            {
+           // if (DateTime.Now.Hour == 11)
+          //  {
                 return new SuccessDataResult<List<Car>>(_carDal.GetAll(), Messages.CarListed);
-            }
-            else
-            {
-                return new ErrorDataResult<List<Car>>(Messages.MaintenanceTime);
-            }
+           // }
+           // else
+           // {
+           //     return new ErrorDataResult<List<Car>>(Messages.MaintenanceTime);
+           // }
 
         }
 
         public IDataResult<Car> GetById(int id)
         {
-            if (DateTime.Now.Hour == 22)
+            if (DateTime.Now.Hour == 11)
             {
                 return new SuccessDataResult<Car>(_carDal.Get(c => c.CarId == id), Messages.CarListed);
             }
@@ -75,7 +77,7 @@ namespace Business.Concrete
 
         public IDataResult<List<CarDetailDto>>GetCarDetails()
         {
-            if (DateTime.Now.Hour == 22)
+            if (DateTime.Now.Hour == 11)
             {
                 return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(), Messages.CarListed);
 
@@ -89,7 +91,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Car>> GetCarsByBrandId(int id)
         {
-            if (DateTime.Now.Hour == 22)
+            if (DateTime.Now.Hour == 11)
             {
                 return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.BrandId == id), Messages.CarListed);
             }
@@ -101,7 +103,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Car>> GetCarsByColorId(int id)
         {
-            if (DateTime.Now.Hour == 22)
+            if (DateTime.Now.Hour == 11)
             {
                 return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.ColorId == id), Messages.CarListed);
             }
@@ -113,7 +115,7 @@ namespace Business.Concrete
 
         public IResult Update(Car car)
         {
-            if (DateTime.Now.Hour == 22)
+            if (DateTime.Now.Hour == 11)
             {
                 _carDal.Update(car);
                 return new SuccessResult(Messages.CarUpdated);

@@ -21,7 +21,7 @@ namespace Business.Concrete
 
         public IResult Add(Color color)
         {
-            if (DateTime.Now.Hour == 22)
+            if (DateTime.Now.Hour == 11)
             {
                 _colorDal.Add(color);
                 return new SuccessResult(Messages.ColorAdded);
@@ -35,7 +35,7 @@ namespace Business.Concrete
 
         public IResult Delete(Color color)
         {
-            if (DateTime.Now.Hour == 22)
+            if (DateTime.Now.Hour == 11)
             {
                 _colorDal.Delete(color);
                 return new SuccessResult(Messages.ColorDeleted);
@@ -48,7 +48,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Color>> GetAll()
         {
-            if (DateTime.Now.Hour == 22)
+            if (DateTime.Now.Hour == 11)
             {
                 return new SuccessDataResult<List<Color>>(_colorDal.GetAll(), Messages.ColorListed);
             }
@@ -60,7 +60,7 @@ namespace Business.Concrete
 
         public IDataResult<Color> GetById(int id)
         {
-            if (DateTime.Now.Hour==22)
+            if (DateTime.Now.Hour== 11)
             {
                 return new SuccessDataResult<Color>(_colorDal.Get(c => c.ColorId == id), Messages.ColorListed);
             }
@@ -73,7 +73,7 @@ namespace Business.Concrete
         public IResult Update(Color color)
         {
 
-            if (DateTime.Now.Hour == 22)
+            if (DateTime.Now.Hour == 11)
             {
                 _colorDal.Update(color);
                 return new SuccessResult(Messages.ColorUpdated);
