@@ -2,7 +2,7 @@
 using Business.Constants;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
-using Entites.Concrete;
+using Entities.Concrete;
 using System;
 
 namespace ConsoleUI

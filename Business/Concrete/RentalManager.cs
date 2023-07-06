@@ -3,11 +3,10 @@ using Business.Constants;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
-using Entites.Concrete;
-using Entites.DTOs;
+using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Business.Concrete
 {
@@ -39,12 +38,12 @@ namespace Business.Concrete
         {
             if (DateTime.Now.Hour == 11)
             {
-                _rentalDal.Delete(rental);
-                return new SuccessResult(Messages.RentalDeleted);
+               return new ErrorResult(Messages.MaintenanceTime);
             }
             else
             {
-                return new ErrorResult(Messages.MaintenanceTime);
+                _rentalDal.Delete(rental);
+                return new SuccessResult(Messages.RentalDeleted);
             }
         }
 
@@ -52,11 +51,11 @@ namespace Business.Concrete
         {
             if (DateTime.Now.Hour == 11)
             {
-                return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(), Messages.RentalListed);
+                 return new ErrorDataResult<List<Rental>>(Messages.MaintenanceTime);
             }
             else
             {
-                return new ErrorDataResult<List<Rental>>(Messages.MaintenanceTime);
+                return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(), Messages.RentalListed);
             }
         }
 
@@ -64,11 +63,11 @@ namespace Business.Concrete
         {
             if (DateTime.Now.Hour == 11)
             {
-                return new SuccessDataResult<List<RentalDetailDto>>(Messages.RentalListed);
+               return new ErrorDataResult<List<RentalDetailDto>>(Messages.MaintenanceTime);
             }
             else
             {
-                return new ErrorDataResult<List<RentalDetailDto>>(Messages.MaintenanceTime);
+                return new SuccessDataResult<List<RentalDetailDto>>(Messages.RentalListed);
             }
            
         }
@@ -77,12 +76,12 @@ namespace Business.Concrete
         {
             if (DateTime.Now.Hour == 11)
             {
-                _rentalDal.Update(rental);
-                return new SuccessResult(Messages.RentalUpdated);
+                return new ErrorResult(Messages.MaintenanceTime);
             }
             else
             {
-                return new ErrorResult(Messages.MaintenanceTime);
+                _rentalDal.Update(rental);
+                return new SuccessResult(Messages.RentalUpdated);
             }
         }
     }

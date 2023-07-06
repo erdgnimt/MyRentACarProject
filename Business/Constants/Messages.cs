@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Business.Constants
+﻿namespace Business.Constants
 {
     public static class Messages
     {
@@ -30,6 +26,19 @@ namespace Business.Constants
         public static string UserAdded="User Added!";
         public static string UserDeleted="User Deleted!";
         public static string UserUpdated="User Updated!";
-        internal static string RentalError="Cannot be rented!";
+        public static string RentalError="Cannot be rented!";
+        public static string ImageAdded="Image added!";
+        public static string ImageDeleted="Image deleted!";
+        public static string ImageListed="Image listed!";
+        public static string ImageUpdated="Image updated!";
+        public static string ImageCountExceeded= "A car can have up to 5 images!";
+        public static string ImageNotFound="No picture of the car found!";
+        public static string AuthorizationDenied = "You are not authorized!";
+        public static string UserRegistered="Current user!";
+        public static string UserNotFound="User not found!";
+        public static string PasswordError="Password error!";
+        public static string SuccessfulLogin="Success login!";
+        public static string UserAlreadyExists="User already exist!";
+        public static string AccessTokenCreated="Access token created!";
     }
 }

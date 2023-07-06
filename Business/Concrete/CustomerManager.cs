@@ -3,10 +3,9 @@ using Business.Constants;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
-using Entites.Concrete;
+using Entities.Concrete;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Business.Concrete
 {
@@ -22,12 +21,12 @@ namespace Business.Concrete
         {
             if (DateTime.Now.Hour == 11)
             {
-                _customerDal.Add(customer);
-                return new SuccessResult(Messages.CustomerAdded);
+                return new ErrorResult(Messages.MaintenanceTime);
             }
             else
             {
-                return new ErrorResult(Messages.MaintenanceTime);
+                _customerDal.Add(customer);
+                return new SuccessResult(Messages.CustomerAdded);
             }
         }
 
@@ -35,12 +34,12 @@ namespace Business.Concrete
         {
             if (DateTime.Now.Hour == 11)
             {
-                _customerDal.Delete(customer);
-                return new SuccessResult(Messages.CustomerDeleted);
+                return new ErrorResult(Messages.MaintenanceTime);
             }
             else
             {
-                return new ErrorResult(Messages.MaintenanceTime);
+                _customerDal.Delete(customer);
+                return new SuccessResult(Messages.CustomerDeleted);
             }
         }
 
@@ -48,11 +47,11 @@ namespace Business.Concrete
         {
             if (DateTime.Now.Hour == 11)
             {
-                return new SuccessDataResult<List<Customer>>(_customerDal.GetAll(), Messages.CustomerListed);
+                return new ErrorDataResult<List<Customer>>(Messages.MaintenanceTime);
             }
             else
             {
-                return new ErrorDataResult<List<Customer>>(Messages.MaintenanceTime);
+                return new SuccessDataResult<List<Customer>>(_customerDal.GetAll(), Messages.CustomerListed);
             }
             
         }
@@ -61,11 +60,11 @@ namespace Business.Concrete
         {
             if (DateTime.Now.Hour == 11)
             {
-                return new SuccessDataResult<Customer>(_customerDal.Get(c => c.CustomerId == id), Messages.ColorListed);
+                return new ErrorDataResult<Customer>(Messages.MaintenanceTime);
             }
             else
             {
-                return new ErrorDataResult<Customer>(Messages.MaintenanceTime);
+                return new SuccessDataResult<Customer>(_customerDal.Get(c => c.CustomerId == id), Messages.ColorListed);
             }
         }
 
@@ -73,12 +72,12 @@ namespace Business.Concrete
         {
             if (DateTime.Now.Hour == 11)
             {
-                _customerDal.Update(customer);
-                return new SuccessResult(Messages.CustomerUpdated);
+                return new ErrorResult(Messages.MaintenanceTime);
             }
             else
             {
-                return new ErrorResult(Messages.MaintenanceTime);
+                _customerDal.Update(customer);
+                return new SuccessResult(Messages.CustomerUpdated);
             }
         }
     }

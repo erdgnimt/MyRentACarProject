@@ -13,7 +13,7 @@ namespace Core.Aspects.Autofac.Validation
     {
         private Type _validatorType;
         public ValidationAspect(Type validatorType)
-        {
+        { 
             if (!typeof(IValidator).IsAssignableFrom(validatorType))
             {
                 throw new System.Exception("invalid!!!");
@@ -30,6 +30,6 @@ namespace Core.Aspects.Autofac.Validation
             {
                 ValidationTool.Validate(validator, entity);
             }
-        }
+        }       
     }
 }

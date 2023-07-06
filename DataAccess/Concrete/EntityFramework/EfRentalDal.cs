@@ -1,7 +1,7 @@
 ﻿using Core.DataAccess.EntityFramework;
 using DataAccess.Abstract;
-using Entites.Concrete;
-using Entites.DTOs;
+using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Linq;
 using System.Collections.Generic;

@@ -1,12 +1,13 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
-using Entites.Concrete;
+using Entities.Concrete;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Business.Concrete
 {
@@ -17,31 +18,31 @@ namespace Business.Concrete
         {
             _brandDal = brandDal;
         }
-
+        [ValidationAspect(typeof(BrandValidator))]
         public IResult Add(Brand brand)
         {
             if (DateTime.Now.Hour == 11)
             {
-                _brandDal.Add(brand);
-                return new SuccessResult(Messages.BrandAdded);
+                return new ErrorResult(Messages.MaintenanceTime);
             }
             else
             {
-                return new ErrorResult(Messages.MaintenanceTime);
+                _brandDal.Add(brand);
+                return new SuccessResult(Messages.BrandAdded);
             }
-            
+
         }
 
         public IResult Delete(Brand brand)
         {
             if (DateTime.Now.Hour == 11)
             {
-                _brandDal.Delete(brand);
-                return new SuccessResult(Messages.BrandDeleted);
+                return new ErrorResult(Messages.MaintenanceTime);
             }
             else
             {
-                return new ErrorResult(Messages.MaintenanceTime);
+                _brandDal.Delete(brand);
+                return new SuccessResult(Messages.BrandDeleted);
             }            
         }
 
@@ -49,12 +50,12 @@ namespace Business.Concrete
         {
             if (DateTime.Now.Hour == 11)
             {
-                return new SuccessDataResult<List<Brand>>(_brandDal.GetAll(),Messages.BrandListed);
+               return new ErrorDataResult<List<Brand>>(Messages.MaintenanceTime);
             }
-            
+
             else
             {
-                return new ErrorDataResult<List<Brand>>(Messages.MaintenanceTime);
+                return new SuccessDataResult<List<Brand>>(_brandDal.GetAll(), Messages.BrandListed);
             }
         }
 
@@ -62,11 +63,11 @@ namespace Business.Concrete
         {
             if (DateTime.Now.Hour == 11)
             {
-                return new SuccessDataResult<Brand>(_brandDal.Get(b => b.BrandId == id), Messages.BrandListed);
+                return new ErrorDataResult<Brand>(Messages.MaintenanceTime);
             }
             else
             {
-                return new ErrorDataResult<Brand>(Messages.MaintenanceTime);
+                return new SuccessDataResult<Brand>(_brandDal.Get(b => b.BrandId == id), Messages.BrandListed);
             }
         }
 
@@ -74,12 +75,12 @@ namespace Business.Concrete
         {
             if (DateTime.Now.Hour == 11)
             {
-                _brandDal.Update(brand);
-                return new SuccessResult(Messages.BrandUpdated);
+               return new ErrorResult(Messages.MaintenanceTime);
             }
             else
             {
-                return new ErrorResult(Messages.MaintenanceTime);
+                _brandDal.Update(brand);
+                return new SuccessResult(Messages.BrandUpdated);
             }
             
         }

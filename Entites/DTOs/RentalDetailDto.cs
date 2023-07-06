@@ -1,7 +1,7 @@
-﻿using Core.Entites;
+﻿using Core.Entities;
 using System;
 
-namespace Entites.DTOs
+namespace Entities.DTOs
 {
     public class RentalDetailDto : IEntity
     {

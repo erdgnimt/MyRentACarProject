@@ -3,10 +3,9 @@ using Business.Constants;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
-using Entites.Concrete;
+using Entities.Concrete;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Business.Concrete
 {
@@ -23,12 +22,12 @@ namespace Business.Concrete
         {
             if (DateTime.Now.Hour == 11)
             {
-                _colorDal.Add(color);
-                return new SuccessResult(Messages.ColorAdded);
+                return new SuccessResult(Messages.MaintenanceTime);
             }
             else
             {
-                return new SuccessResult(Messages.MaintenanceTime);
+                _colorDal.Add(color);
+                return new SuccessResult(Messages.ColorAdded);
             }
            
         }
@@ -37,12 +36,12 @@ namespace Business.Concrete
         {
             if (DateTime.Now.Hour == 11)
             {
-                _colorDal.Delete(color);
-                return new SuccessResult(Messages.ColorDeleted);
+                return new ErrorResult(Messages.MaintenanceTime);
             }
             else
             {
-                return new SuccessResult(Messages.MaintenanceTime);
+                _colorDal.Delete(color);
+                return new SuccessResult(Messages.ColorDeleted);
             }
         }
 
@@ -50,11 +49,11 @@ namespace Business.Concrete
         {
             if (DateTime.Now.Hour == 11)
             {
-                return new SuccessDataResult<List<Color>>(_colorDal.GetAll(), Messages.ColorListed);
+                return new ErrorDataResult<List<Color>>(Messages.MaintenanceTime);
             }
             else
             {
-                return new ErrorDataResult<List<Color>>(Messages.MaintenanceTime);
+                return new SuccessDataResult<List<Color>>(_colorDal.GetAll(), Messages.ColorListed);
             }
         }
 
@@ -62,11 +61,11 @@ namespace Business.Concrete
         {
             if (DateTime.Now.Hour== 11)
             {
-                return new SuccessDataResult<Color>(_colorDal.Get(c => c.ColorId == id), Messages.ColorListed);
+               return new ErrorDataResult<Color>(Messages.MaintenanceTime);
             }
             else
             {
-                return new ErrorDataResult<Color>(Messages.MaintenanceTime);
+                return new SuccessDataResult<Color>(_colorDal.Get(c => c.ColorId == id), Messages.ColorListed);
             }           
         }
 
@@ -75,12 +74,12 @@ namespace Business.Concrete
 
             if (DateTime.Now.Hour == 11)
             {
-                _colorDal.Update(color);
-                return new SuccessResult(Messages.ColorUpdated);
+                return new SuccessResult(Messages.MaintenanceTime);
             }
             else
             {
-                return new SuccessResult(Messages.MaintenanceTime);
+                _colorDal.Update(color);
+                return new SuccessResult(Messages.ColorUpdated);
             }
             
         }

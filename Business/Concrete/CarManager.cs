@@ -1,15 +1,15 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspect.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
-using Entites.Concrete;
-using Entites.DTOs;
+using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Business.Concrete
 {
@@ -24,41 +24,41 @@ namespace Business.Concrete
         public IResult Add(Car car)
         {
 
-           // if (DateTime.Now.Hour == 11)
-           // {
+            if (DateTime.Now.Hour == 11)
+            {
+                return new ErrorResult(Messages.MaintenanceTime);
+            }
+            else
+            {
                 _carDal.Add(car);
                 return new SuccessResult(Messages.CarAdded);
-          //  }
-          //  else
-          //  {
-           //     return new ErrorResult(Messages.MaintenanceTime);
-           // }
+            }
 
         }
         public IResult Delete(Car car)
         {
             if (DateTime.Now.Hour == 11)
             {
-                _carDal.Delete(car);
-                return new SuccessResult(Messages.CarDeleted);
+                return new ErrorResult(Messages.MaintenanceTime);
             }
             else
             {
-                return new ErrorResult(Messages.MaintenanceTime);
+                _carDal.Delete(car);
+                return new SuccessResult(Messages.CarDeleted);
             }
 
         }
-
+        [SecuredOperation("car.getall")]
         public IDataResult<List<Car>> GetAll()
         {
-           // if (DateTime.Now.Hour == 11)
-          //  {
+            if (DateTime.Now.Hour == 11)
+            {
+                return new ErrorDataResult<List<Car>>(Messages.MaintenanceTime);
+            }
+            else
+            {
                 return new SuccessDataResult<List<Car>>(_carDal.GetAll(), Messages.CarListed);
-           // }
-           // else
-           // {
-           //     return new ErrorDataResult<List<Car>>(Messages.MaintenanceTime);
-           // }
+            }
 
         }
 
@@ -66,11 +66,11 @@ namespace Business.Concrete
         {
             if (DateTime.Now.Hour == 11)
             {
-                return new SuccessDataResult<Car>(_carDal.Get(c => c.CarId == id), Messages.CarListed);
+                return new ErrorDataResult<Car>(Messages.MaintenanceTime);
             }
             else
             {
-                return new ErrorDataResult<Car>(Messages.MaintenanceTime);
+                return new SuccessDataResult<Car>(_carDal.Get(c => c.CarId == id), Messages.CarListed);
             }
 
         }
@@ -79,12 +79,12 @@ namespace Business.Concrete
         {
             if (DateTime.Now.Hour == 11)
             {
-                return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(), Messages.CarListed);
+               return new ErrorDataResult<List<CarDetailDto>>(Messages.MaintenanceTime);
 
             }
             else
             {
-                return new ErrorDataResult<List<CarDetailDto>>(Messages.MaintenanceTime);
+                return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(), Messages.CarListed);
             }
 
         }
@@ -93,11 +93,11 @@ namespace Business.Concrete
         {
             if (DateTime.Now.Hour == 11)
             {
-                return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.BrandId == id), Messages.CarListed);
+                return new ErrorDataResult<List<Car>>(Messages.MaintenanceTime);
             }
             else
             {
-                return new ErrorDataResult<List<Car>>(Messages.MaintenanceTime);
+                 return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.BrandId == id), Messages.CarListed);
             }
         }
 
@@ -105,11 +105,11 @@ namespace Business.Concrete
         {
             if (DateTime.Now.Hour == 11)
             {
-                return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.ColorId == id), Messages.CarListed);
+                return new ErrorDataResult<List<Car>>(Messages.MaintenanceTime);
             }
             else
             {
-                return new ErrorDataResult<List<Car>>(Messages.MaintenanceTime);
+                return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.ColorId == id), Messages.CarListed);
             }
         }
 
@@ -117,12 +117,12 @@ namespace Business.Concrete
         {
             if (DateTime.Now.Hour == 11)
             {
-                _carDal.Update(car);
-                return new SuccessResult(Messages.CarUpdated);
+               return new ErrorResult(Messages.MaintenanceTime);
             }
             else
             {
-                return new ErrorResult(Messages.MaintenanceTime);
+                _carDal.Update(car);
+                return new SuccessResult(Messages.CarUpdated);
             }
 
         }

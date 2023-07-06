@@ -1,9 +1,9 @@
-﻿using Core.Entites;
+﻿using Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Entites.Concrete
+namespace Entities.Concrete
 {
     public class Brand:IEntity
     {

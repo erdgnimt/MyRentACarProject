@@ -1,9 +1,7 @@
 ﻿using Core.Utilities.Results.Abstract;
-using Entites.Concrete;
-using Entites.DTOs;
-using System;
+using Entities.Concrete;
+using Entities.DTOs;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Business.Abstract
 {
